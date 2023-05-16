@@ -1,5 +1,5 @@
 #include <SimpleDHT.h>
-int pinDHT11 = 27;
+int pinDHT11 = 4;
 SimpleDHT11 dht11(pinDHT11);
 
 
@@ -10,7 +10,7 @@ void setup() {
   pinMode(15, OUTPUT);//選告GPIO15作為輸出（綠色LED）
   pinMode(2, OUTPUT);//選告GPIO 2作為輸出（黃色LED)
   //pinMode(0, OUTPUT);//選告GPIO 0作為輸出（黃色LED）
-  pinMode(4, OUTPUT);//選告GPIO 4作為輸出（紅色LED）
+  pinMode(16, OUTPUT);//選告GPIO 4作為輸出（紅色LED）
   //pinMode(13, INPUT);//選告GPIO 13作為輸入（溫溼度讀取）
 }
 
@@ -32,7 +32,7 @@ void loop() {
     //小於500，代表亮度充足，關閉所有LED
     digitalWrite(15, LOW);
     digitalWrite(2, LOW);
-    digitalWrite(4, LOW);
+    digitalWrite(16, LOW);
     }
   }
 
@@ -42,19 +42,19 @@ void loop() {
     //500-1000之間，代表亮度中等
     digitalWrite(15, HIGH);
     digitalWrite(2,LOW);
-    digitalWrite(4, LOW);
+    digitalWrite(16, LOW);
   }
   if ((int)humidity >= 60 && (int)humidity < 70) {
     //1000-2000之間，代表亮度不足
     digitalWrite(15, HIGH);
     digitalWrite(2, HIGH);
-    digitalWrite(4, LOW);
+    digitalWrite(16, LOW);
   }
   if ((int)humidity > 80) {
     //2000以上，代表完全無燈光
     digitalWrite(15, HIGH);
     digitalWrite(2, HIGH);
-    digitalWrite(4, HIGH);
+    digitalWrite(16, HIGH);
   }
   delay(1500);
 }
