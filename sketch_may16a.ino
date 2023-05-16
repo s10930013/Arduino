@@ -8,7 +8,7 @@ SimpleDHT11 dht11(pinDHT11);
 void setup() {
   Serial.begin(115200);
   pinMode(15, OUTPUT);//選告GPIO15作為輸出（綠色LED）
-  pinMode(2, OUTPUT);//選告GPIO 2作為輸出（黃色LED）
+  pinMode(2, OUTPUT);//選告GPIO 2作為輸出（黃色LED)
   pinMode(0, OUTPUT);//選告GPIO 0作為輸出（黃色LED）
   pinMode(4, OUTPUT);//選告GPIO 4作為輸出（紅色LED）
   pinMode(13, INPUT);//選告GPIO 13作為輸入（溫溼度讀取）
@@ -19,16 +19,14 @@ void loop() {
   byte temperature = 0;
   byte humidity = 0;
   int err = SimpleDHTErrSuccess;
-   Serial.print("Sample OK: ");
-  Serial.print((int)temperature); Serial.print(" *C, "); 
-  Serial.print((int)humidity); Serial.println(" H");  
-  // DHT11 sampling rate is 1HZ
-
   if ((err = dht11.read(&temperature, &humidity, NULL)) != SimpleDHTErrSuccess) {
     Serial.print("Read DHT11 failed, err="); Serial.println(err);delay(1000);
     return;
-  Serial.println("Sample DHT11...");
-  int LightValue;//宣告變數LightValue
+  Serial.print("Sample OK: ");
+  Serial.print((int)temperature); Serial.print(" *C, "); 
+  Serial.print((int)humidity); Serial.println(" H");  
+  // DHT11 sampling rate is 1HZ
+ 
   LightValue = analogRead(13); //讀取的GPIO 13讀取的數值放在LightValue
   Serial.println(LightValue); //LightValue顯示在序列視窗
   if ((int)humidity < 50) {
