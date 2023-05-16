@@ -25,6 +25,7 @@ void loop() {
   Serial.print("Sample OK: ");
   Serial.print((int)temperature); Serial.print(" *C, "); 
   Serial.print((int)humidity); Serial.println(" H");  
+    delay(100);
   // DHT11 sampling rate is 1HZ
  
   //LightValue = analogRead(13); //讀取的GPIO 13讀取的數值放在LightValue
