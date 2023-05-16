@@ -21,40 +21,33 @@ void loop() {
   int err = SimpleDHTErrSuccess;
   if ((err = dht11.read(&temperature, &humidity, NULL)) != SimpleDHTErrSuccess) {
     Serial.print("Read DHT11 failed, err="); Serial.println(err);delay(1000);
-    return;
+    return;}
   Serial.print("Sample OK: ");
   Serial.print((int)temperature); Serial.print(" *C, "); 
   Serial.print((int)humidity); Serial.println(" H");  
   // DHT11 sampling rate is 1HZ
   delay(1500);
- 
-  if ((int)humidity < 50) {
-    //小於500，代表亮度充足，關閉所有LED
-    digitalWrite(15, LOW);
+  
+  if ((int)humidity < 65) {
+    //小於65，代表濕度舒適亮綠燈
+    digitalWrite(15, HIGH);
     digitalWrite(2, LOW);
     digitalWrite(16, LOW);
     }
-  }
 
 
-  
-  if ((int)humidity>= 50 && (int)humidity < 60) {
-    //500-1000之間，代表亮度中等
-    digitalWrite(15, HIGH);
-    digitalWrite(2,LOW);
-    digitalWrite(16, LOW);
-  }
-  if ((int)humidity >= 60 && (int)humidity < 70) {
-    //1000-2000之間，代表亮度不足
+  if ((int)humidity >= 65 && (int)humidity < 80) {
+    //65-80之間，代表濕度偏溼亮黃綠燈
     digitalWrite(15, HIGH);
     digitalWrite(2, HIGH);
     digitalWrite(16, LOW);
   }
   if ((int)humidity > 80) {
-    //2000以上，代表完全無燈光
+    //80以上，代表濕度潮溼亮紅黃綠燈
     digitalWrite(15, HIGH);
     digitalWrite(2, HIGH);
     digitalWrite(16, HIGH);
   }
   delay(1500);
+  
 }
